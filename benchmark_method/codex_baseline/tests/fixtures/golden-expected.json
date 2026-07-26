@@ -1,0 +1,1 @@
+{"precision":1.0,"recall":1.0,"f1_score":1.0,"hit_file_rate":1.0,"noise_file_rate":0.0,"hit_region_rate":1.0,"noise_region_rate":0.0,"weighted_core_coverage":1.0,"context_efficiency":1.0,"optional_coverage":0.0,"ndcg_at_100":1.0,"ndcg_at_300":1.0,"ndcg_at_500":1.0,"recall_at_100":1.0,"recall_at_300":1.0,"recall_at_500":1.0,"first_useful_hit":1.0}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["run_id", "arm", "task_id", "sample_id", "attempt_id", "validity", "artifacts"],
+  "properties": {
+    "run_id": {"type": "string"},
+    "arm": {"const": "codex-baseline"},
+    "task_id": {"type": "string"},
+    "sample_id": {"type": "integer", "minimum": 1},
+    "attempt_id": {"type": "string"},
+    "validity": {"type": "object"},
+    "artifacts": {"type": "object"}
+  }
+}

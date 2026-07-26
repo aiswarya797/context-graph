@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["profile_id", "model", "currency", "source", "rates", "accounting"],
+  "properties": {
+    "profile_id": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "currency": {"const": "USD"},
+    "source": {"type": "string", "minLength": 1},
+    "rates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_per_million", "cached_input_per_million", "cache_write_input_per_million", "output_per_million", "reasoning_per_million"],
+      "properties": {
+        "input_per_million": {"type": "number", "minimum": 0},
+        "cached_input_per_million": {"type": "number", "minimum": 0},
+        "cache_write_input_per_million": {"type": "number", "minimum": 0},
+        "output_per_million": {"type": "number", "minimum": 0},
+        "reasoning_per_million": {"type": "number", "minimum": 0}
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reasoning_in_output"],
+      "properties": {"reasoning_in_output": {"type": "boolean"}}
+    }
+  }
+}

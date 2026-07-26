@@ -1,0 +1,3 @@
+{"type":"thread.started"}
+{"type":"turn.started"}
+{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":25,"cache_write_input_tokens":5,"output_tokens":40,"reasoning_output_tokens":12,"total_tokens":152}}

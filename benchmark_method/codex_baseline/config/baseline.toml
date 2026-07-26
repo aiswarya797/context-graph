@@ -1,0 +1,20 @@
+[baseline]
+arm = "codex-baseline"
+protocol = "direct-region-v1"
+model = "gpt-5.6-luna"
+display_name = "Codex GPT-5.6 Luna (high)"
+reasoning_effort = "high"
+codex_version = "0.145.0"
+sample_count = 3
+retry_cap = 2
+timeout_seconds = 900
+max_regions = 5
+
+[paths]
+select10_root = "/Users/aiswarya/Documents/Context Compiler/.benchmark-data/select10"
+select15_root = "/Users/aiswarya/Documents/Context Compiler/.benchmark-data/select15/repos"
+codex_auth_source = "/Users/aiswarya/.codex/auth.json"
+codex_executable = "/Users/aiswarya/.nvm/versions/node/v22.17.0/bin/codex"
+
+[pricing]
+profile = ""
