@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["run_id", "arm", "protocol", "configuration", "corpus", "evaluator"],
+  "properties": {
+    "run_id": {"type": "string"},
+    "arm": {"const": "codex-baseline"},
+    "protocol": {"const": "direct-region-v1"},
+    "configuration": {"type": "object"},
+    "corpus": {"type": "object"},
+    "evaluator": {"type": "object"}
+  }
+}

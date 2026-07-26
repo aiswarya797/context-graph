@@ -1,0 +1,1 @@
+{"instance_id":"fixture__tiny-1","repo":"fixture/tiny","base_commit":"fixture","problem_statement":"Fix the second function.","ground_truth":{"read_core_files":["module.py"],"read_core_regions":[{"path":"module.py","start":5,"end":6}],"read_optional_files_map":{},"read_optional_regions_map":{},"main_files":["module.py"]}}

@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/Qiushao-E/SWE-Explore-Bench",
+  "commit": "3c12dc5a551937038afcbdb6eb6bbf19f3ddd8c1",
+  "path": "eval.py",
+  "sha256": "feea0a7fe67b08e68c940e10887d5b4feaae0b8c58e256eb09f253e65492d745",
+  "semantics": "pinned official eval.py; known paper-to-code nDCG discrepancy is preserved"
+}

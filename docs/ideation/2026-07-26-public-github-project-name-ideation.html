@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ideation: Public GitHub Project Name</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f5ef;
+      --panel: #fffdf8;
+      --text: #1f2926;
+      --muted: #5e6a66;
+      --line: #d8ddd7;
+      --accent: #075e54;
+      --accent-soft: #dff2ec;
+      --accent-text: #06483f;
+      --warn-soft: #fff2cc;
+      --warn-text: #644d00;
+      --cut-soft: #f5e7e3;
+      --cut-text: #6d2f23;
+      --shadow: 0 12px 32px rgba(31, 41, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    main {
+      width: min(94vw, 920px);
+      margin: 0 auto;
+      padding: 4rem 0 2rem;
+    }
+
+    header, section, footer { margin-bottom: 2.4rem; }
+
+    h1, h2, h3 {
+      line-height: 1.16;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    h1 { font-size: clamp(2.2rem, 6vw, 4.3rem); max-width: 12ch; }
+    h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+    h3 { font-size: 1.3rem; }
+
+    p { max-width: 72ch; }
+    strong { color: inherit; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+      background: rgba(7, 94, 84, 0.08);
+      border-radius: 0.35rem;
+      padding: 0.08rem 0.3rem;
+    }
+
+    a { color: var(--accent); text-underline-offset: 0.18em; }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .lede {
+      font-size: 1.18rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin-top: 1.2rem;
+    }
+
+    .meta, .stats, .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.68rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .chip.accent { background: var(--accent-soft); color: var(--accent-text); border-color: transparent; }
+    .chip.warn { background: var(--warn-soft); color: var(--warn-text); border-color: transparent; }
+
+    .callout {
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      padding: 1rem 1.15rem;
+      border-radius: 0.9rem;
+      margin: 1.1rem 0;
+    }
+
+    .callout p { margin: 0; }
+
+    .idea-grid { display: grid; gap: 1rem; }
+
+    article.idea {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      box-shadow: var(--shadow);
+      padding: 1.35rem;
+    }
+
+    article.idea.top {
+      background: linear-gradient(145deg, var(--panel), var(--accent-soft));
+      border-color: rgba(7, 94, 84, 0.28);
+    }
+
+    .idea-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .rank {
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: minmax(7rem, 0.34fr) 1fr;
+      gap: 0.6rem 1rem;
+      margin: 1rem 0 0;
+    }
+
+    dt {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    dd { margin: 0; }
+
+    .comparison {
+      overflow-x: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 0.9rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.85rem;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .rejections td:first-child {
+      color: var(--cut-text);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .composition-signal {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding-top: 1.3rem;
+    }
+
+    @media (max-width: 620px) {
+      main { padding-top: 2.2rem; }
+      dl { grid-template-columns: 1fr; }
+      dt { margin-top: 0.3rem; }
+      .idea-head { align-items: center; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121816;
+        --panel: #19211e;
+        --text: #e7edea;
+        --muted: #aab6b1;
+        --line: #34423d;
+        --accent: #66d6c4;
+        --accent-soft: #183d37;
+        --accent-text: #b8f4e8;
+        --warn-soft: #44390f;
+        --warn-text: #ffe89a;
+        --cut-soft: #422a25;
+        --cut-text: #ffc5b8;
+        --shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+      }
+      .rank { color: #092c27; }
+      code { background: rgba(102, 214, 196, 0.12); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Public project naming</p>
+      <h1>Ideation: Public GitHub Project Name</h1>
+      <p class="lede">A public name should describe the trustworthy benchmark that exists today, not the graph product that may exist later.</p>
+      <div class="meta" aria-label="Document metadata">
+        <span class="chip"><strong>Date</strong> <time datetime="2026-07-26">2026-07-26</time></span>
+        <span class="chip"><strong>Topic</strong> public-github-project-name</span>
+        <span class="chip"><strong>Focus</strong> public GitHub project name</span>
+        <span class="chip"><strong>Mode</strong> repo-grounded</span>
+      </div>
+      <div class="stats" aria-label="Ideation statistics">
+        <span class="chip accent">42 raw candidates</span>
+        <span class="chip accent">3 survivors</span>
+        <span class="chip warn">39 cut</span>
+      </div>
+    </header>
+
+    <section id="grounding-context">
+      <p class="eyebrow">What the name must earn</p>
+      <h2>Grounding Context</h2>
+      <p><strong>Codebase Context.</strong> The repository currently ships a dependency-free Python apparatus for a pinned, plain-Codex SWE-Explore source-localization baseline. Its public behavior is a strict sequence of preparation, doctor and smoke gates, immutable run capture, official scoring, validation, reporting, and freezing.</p>
+      <p>The project’s distinctive asset is not a graph. It is the retained evidence behind a benchmark claim: pinned inputs, raw provider events, stderr, telemetry, evaluator provenance, contamination checks, repository isolation, and an explicit claimability decision. The current README also says that CodeGraph, OKFs, retrieval, embeddings, generated context, wiki, and memory are not implemented.</p>
+      <div class="callout">
+        <p><strong>Naming boundary:</strong> keep <em>Context Graph</em> as an internal research-program label if useful, but do not use it as the public release name today. The phrase is already occupied by adjacent projects such as <a href="https://codecontextgraph.com/">Code Context Graph</a>, <a href="https://github.com/tae2089/code-context-graph">tae2089/code-context-graph</a>, and <a href="https://github.com/neo4j-labs/create-context-graph">Neo4j’s create-context-graph</a>.</p>
+      </div>
+      <p>The strongest pattern from the reviewed tool repositories—CodexBar, Peekaboo, MCPorter, Oracle, Summarize, agent-scripts, agent-rules, and Aspects—is a compact noun or function word paired with a literal first-line subtitle. The name carries identity; the subtitle carries precision.</p>
+    </section>
+
+    <section id="topic-axes">
+      <p class="eyebrow">Surface map</p>
+      <h2>Topic Axes</h2>
+      <p>Decomposition skipped — atomic subject.</p>
+    </section>
+
+    <section id="ranked-ideas">
+      <p class="eyebrow">Collision-screened shortlist</p>
+      <h2>Ranked Ideas</h2>
+      <div class="idea-grid">
+        <article class="idea top" id="idea-1">
+          <div class="idea-head">
+            <div>
+              <p class="eyebrow">Top pick</p>
+              <h3>1. RepoWitness</h3>
+            </div>
+            <span class="rank">1</span>
+          </div>
+          <p><strong>Description:</strong> Publish the repository as <code>repo-witness</code>, with the product name <strong>RepoWitness</strong> and the subtitle “Auditable source-localization benchmarks for coding agents.” “Repo” makes the subject concrete; “Witness” makes retained, inspectable evidence the product promise.</p>
+          <dl>
+            <dt>Basis</dt>
+            <dd><strong>direct:</strong> The current apparatus retains raw execution evidence, validates evaluator and repository provenance, detects contamination, and freezes only claimable runs. <strong>external:</strong> No indexed product or GitHub collision surfaced for RepoWitness in the naming screen, and the exact PyPI names <code>repowitness</code> and <code>repo-witness</code> returned no project.</dd>
+            <dt>Rationale</dt>
+            <dd>It is accurate on day one and remains true when plain Codex, CodeGraph, and later approaches become comparison arms. It differentiates the project on trust without claiming that it performs graph retrieval.</dd>
+            <dt>Downsides</dt>
+            <dd>“Witness” alone would be vague, so the compound and literal subtitle should always travel together. Collision screening is not trademark clearance.</dd>
+            <dt>Confidence</dt>
+            <dd>92%</dd>
+            <dt>Complexity</dt>
+            <dd>Low</dd>
+          </dl>
+          <div class="chips">
+            <span class="chip accent">GitHub: repo-witness</span>
+            <span class="chip accent">Python: repo-witness</span>
+            <span class="chip accent">Module: repo_witness</span>
+          </div>
+        </article>
+
+        <article class="idea" id="idea-2">
+          <div class="idea-head">
+            <h3>2. RegionWitness</h3>
+            <span class="rank">2</span>
+          </div>
+          <p><strong>Description:</strong> Use <code>region-witness</code> when the public identity should foreground the exact output being evaluated: ranked source regions backed by an auditable run record.</p>
+          <dl>
+            <dt>Basis</dt>
+            <dd><strong>direct:</strong> The current protocol is <code>direct-region-v1</code>, and every valid attempt returns ordered evidence regions before official source-localization scoring.</dd>
+            <dt>Rationale</dt>
+            <dd>The name joins the benchmark’s measured object with its verification contract. It is more technically explicit than RepoWitness and still avoids promising a graph.</dd>
+            <dt>Downsides</dt>
+            <dd>It is longer, less fluid aloud, and may feel narrow if the project later evaluates non-region outputs.</dd>
+            <dt>Confidence</dt>
+            <dd>84%</dd>
+            <dt>Complexity</dt>
+            <dd>Low</dd>
+          </dl>
+        </article>
+
+        <article class="idea" id="idea-3">
+          <div class="idea-head">
+            <h3>3. Regionmark</h3>
+            <span class="rank">3</span>
+          </div>
+          <p><strong>Description:</strong> Use <code>regionmark</code> for a compact, technical name centered on scoring and validating ranked evidence regions. “Mark” can mean both a selected location and an earned quality mark.</p>
+          <dl>
+            <dt>Basis</dt>
+            <dd><strong>direct:</strong> Source regions are the canonical response unit and are checked through schema validation, official metrics, run validation, and freezing. <strong>reasoned:</strong> a dual-meaning compound creates identity without introducing an unshipped architecture.</dd>
+            <dt>Rationale</dt>
+            <dd>It is short, currently unclaimed on PyPI in the screen, and honest about what the benchmark measures.</dd>
+            <dt>Downsides</dt>
+            <dd>It can sound like a source annotation tool, and “region” may become constraining if the evaluation contract broadens.</dd>
+            <dt>Confidence</dt>
+            <dd>71%</dd>
+            <dt>Complexity</dt>
+            <dd>Low</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <p class="eyebrow">Fast decision</p>
+      <h2>Shortlist Comparison</h2>
+      <div class="comparison">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Immediate clarity</th>
+              <th>Future-arm room</th>
+              <th>Trust signal</th>
+              <th>Collision screen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>RepoWitness</strong></td>
+              <td>High with subtitle</td>
+              <td>High</td>
+              <td>High</td>
+              <td>Cleanest</td>
+            </tr>
+            <tr>
+              <td><strong>RegionWitness</strong></td>
+              <td>High for researchers</td>
+              <td>Medium</td>
+              <td>High</td>
+              <td>Clean</td>
+            </tr>
+            <tr>
+              <td><strong>Regionmark</strong></td>
+              <td>Medium</td>
+              <td>Medium</td>
+              <td>Medium</td>
+              <td>Clean</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="rejection-summary">
+      <p class="eyebrow">The cut is part of the answer</p>
+      <h2>Rejection Summary</h2>
+      <div class="comparison">
+        <table class="rejections">
+          <thead>
+            <tr>
+              <th>Idea</th>
+              <th>Reason Rejected</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Context Graph</td><td>Crowded externally and promises graph functionality absent from the repository.</td></tr>
+            <tr><td>Groundmark</td><td>Existing PyPI project.</td></tr>
+            <tr><td>Lineproof</td><td>Active unrelated product.</td></tr>
+            <tr><td>Waymark</td><td>Existing PyPI project.</td></tr>
+            <tr><td>NeedleBench</td><td>Existing long-context benchmark and paper.</td></tr>
+            <tr><td>Scoutline</td><td>Active products and a registered trademark.</td></tr>
+            <tr><td>SourceSignal</td><td>Multiple active products.</td></tr>
+            <tr><td>Claimcheck</td><td>Existing PyPI project and a muddied common meaning.</td></tr>
+            <tr><td>Pinpoint</td><td>Too generic; omits the benchmark and evidence contract.</td></tr>
+            <tr><td>Receipt</td><td>Too generic and strongly payment-coded.</td></tr>
+            <tr><td>Regioncheck</td><td>Accurate but lint/checker-like and weaker than RegionWitness.</td></tr>
+            <tr><td>Runmark</td><td>Fails first-hearing comprehension.</td></tr>
+            <tr><td>Needle</td><td>Generic and needs too much subtitle support.</td></tr>
+            <tr><td>Tracegate</td><td>Existing PyPI project.</td></tr>
+            <tr><td>Direct</td><td>Would become misleading when treatment arms arrive.</td></tr>
+            <tr><td>Warrant</td><td>Existing PyPI project and implies more guarantee than the benchmark supplies.</td></tr>
+            <tr><td>Proofset</td><td>Active products and a 2026 software trademark application.</td></tr>
+            <tr><td>Witness</td><td>Too broad without a repository qualifier.</td></tr>
+            <tr><td>Trail</td><td>Too generic.</td></tr>
+            <tr><td>Region</td><td>Names only the output unit.</td></tr>
+            <tr><td>Trace</td><td>Reads as runtime tracing.</td></tr>
+            <tr><td>Traverse</td><td>Implies a navigation method that future arms need not share.</td></tr>
+            <tr><td>Proofmark</td><td>Multiple active unrelated products.</td></tr>
+            <tr><td>Assay</td><td>Existing PyPI project.</td></tr>
+            <tr><td>Touchstone</td><td>Generic and indirect.</td></tr>
+            <tr><td>Flightcheck</td><td>Overweights the preflight step.</td></tr>
+            <tr><td>Plumbline</td><td>Too metaphorical for first-hearing clarity.</td></tr>
+            <tr><td>Muster</td><td>Existing PyPI project.</td></tr>
+            <tr><td>Docket</td><td>Active AI-testing and enterprise-software brands.</td></tr>
+            <tr><td>Admit</td><td>Opaque and institution-coded.</td></tr>
+            <tr><td>Sightline</td><td>Existing PyPI project.</td></tr>
+            <tr><td>Found</td><td>Too generic and implies successful retrieval.</td></tr>
+            <tr><td>Litmus</td><td>Generic and indirect.</td></tr>
+            <tr><td>RepoMuster</td><td>Sounds like collection and inherits the weaker base metaphor.</td></tr>
+            <tr><td>Claimset</td><td>Active research-workflow product and established identity-system term.</td></tr>
+            <tr><td>Claimcheck / Proofset / Warrant</td><td>Strong concepts, but public-name collision resistance outweighed conceptual fit.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Only three candidates survived the full cut. The list was not padded after collision checking because a public project name should be ownable enough to search, package, and discuss.</p>
+    </section>
+
+    <footer class="composition-signal">
+      Composed 2026-07-26T00:00:00+05:30 by ce-ideate from the user prompt “What is a good name for this project when I publish as github public project?”
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.benchmark-work/
+.benchmark-runs/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+
