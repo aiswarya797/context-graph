@@ -1,0 +1,17 @@
+{
+  "schema_version": "codegraph-live-fixture-provenance-v1",
+  "fixtures": {
+    "codex-0.145.0-live-missing-codegraph-2c98ead63ed2.min.jsonl": {
+      "source_capture": ".benchmark-work/codegraph/doctor/capture-20260727T043713Z/events.jsonl",
+      "source_capture_sha256": "2c98ead63ed21237be03d9c86bc5cd17e6568a7c9d01fe347331875dc03d64d4",
+      "fixture_sha256": "d26e98c7e494eb4bc076401bf7ca578037900509614aa2914b311119715d060f",
+      "normalization": "Retained observed MCP discovery and fallback events; normalized repository and runtime paths."
+    },
+    "codex-0.145.0-live-codegraph-65618298ef2b.min.jsonl": {
+      "source_capture": ".benchmark-work/codegraph/doctor/capture-20260727T050148Z/events.jsonl",
+      "source_capture_sha256": "65618298ef2b8fc30a129aa63be68318548e40ad2b258280eaa51dd7e1778cf7",
+      "fixture_sha256": "cd922aabdf26f825351f8b5f8228c8e12159f62242d4ff201ed0e2d08ba11b44",
+      "normalization": "Retained complete MCP start/completion lifecycle, final response, and usage; normalized dynamic identifiers and project path; shortened controlled CodeGraph text."
+    }
+  }
+}

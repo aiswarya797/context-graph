@@ -1,0 +1,46 @@
+{
+  "schema_version": "codex-codegraph-task2-publication-v1",
+  "copied_files": [
+    {
+      "original_path": ".benchmark-tools/codegraph/source-lock.json",
+      "publication_path": "reproducibility/codex_codegraph_task2/source-lock.json",
+      "sha256": "d1fe0e768111f1caa3d2bb16285e5e1bd0263ef6e083292972d9e899bf6ea922",
+      "bytes": 4058
+    },
+    {
+      "original_path": ".benchmark-tools/codegraph/upstream-resolution.json",
+      "publication_path": "reproducibility/codex_codegraph_task2/upstream-resolution.json",
+      "sha256": "dec977b5c4635c852b37391b52f5cf3a609489bd8ca2ec8d649290058f1fd427",
+      "bytes": 528
+    }
+  ],
+  "upstream": {
+    "repository_url": "https://github.com/colbymchenry/codegraph.git",
+    "resolved_commit": "572d22bfbe82602080e457bec655f72e3314f9ef",
+    "codegraph_version": "1.5.0"
+  },
+  "task2": {
+    "run_id": "codex-codegraph-v18-20260727T103813Z",
+    "evidence_root": {
+      "path": ".benchmark-tools/codegraph/task2-evidence-root-v18.json",
+      "sha256": "0a71611c62de5c970f1a8904c8cb53d55d1ed6cea6d3f89b1e58b9ceef6a2d0f"
+    },
+    "freeze_marker": {
+      "path": ".benchmark-tools/codegraph/task2-freeze-marker-v18.json",
+      "sha256": "f5da010a9193465e48f78d200c7e1f9f2b892672e8604bcd7e37760be4267c91"
+    },
+    "active_authority": {
+      "path": ".benchmark-work/codegraph/setup-logs-v18/active-authority.json",
+      "sha256": "3bbdd8280d35f60de8892b8dc34a6ee3b5386d7337a5a5f82fcb8906ad42beab"
+    },
+    "active_harness_sha256": "866adb56f6f41437844ae757f3ba2cca7e4fab4da251badf208d6fb398308a5a"
+  },
+  "intentionally_not_included": [
+    "CodeGraph source clone",
+    "CodeGraph dependencies and node_modules",
+    "CodeGraph build output",
+    "Task 2 indexes",
+    "benchmark runs and historical attempts"
+  ],
+  "inclusion_statement": "The CodeGraph source clone, dependencies, build output, indexes, and benchmark runs are intentionally not included."
+}

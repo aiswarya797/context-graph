@@ -1,0 +1,17 @@
+{
+  "schema_version": "codegraph-upstream-resolution-v1",
+  "repository_url": "https://github.com/colbymchenry/codegraph.git",
+  "resolved_ref": "refs/heads/main",
+  "resolved_commit": "572d22bfbe82602080e457bec655f72e3314f9ef",
+  "retrieved_at": "2026-07-27T01:36:21Z",
+  "command": [
+    "git",
+    "ls-remote",
+    "--symref",
+    "https://github.com/colbymchenry/codegraph.git",
+    "HEAD"
+  ],
+  "return_code": 0,
+  "stdout": "ref: refs/heads/main\tHEAD\n572d22bfbe82602080e457bec655f72e3314f9ef\tHEAD\n",
+  "stderr": ""
+}

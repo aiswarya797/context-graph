@@ -1,0 +1,136 @@
+{
+  "schema_version": "codegraph-source-lock-v1",
+  "repository_url": "https://github.com/colbymchenry/codegraph.git",
+  "resolved_commit": "572d22bfbe82602080e457bec655f72e3314f9ef",
+  "retrieved_at": "2026-07-27T01:36:21Z",
+  "declared_version": "1.5.0",
+  "license": "MIT",
+  "package_metadata_sha256": "f6d34389ec4ea24017dd2938e3b8276a6233c864db02bc60cf718df0460b0e6e",
+  "lockfile_sha256": "a587f864facdc9613b0fc5053e542766daab654104defb6f4fc743a68929c008",
+  "upstream_resolution_sha256": "dec977b5c4635c852b37391b52f5cf3a609489bd8ca2ec8d649290058f1fd427",
+  "toolchain": {
+    "required_node_range": ">=20 <25",
+    "node": {
+      "logical_command": "node",
+      "version": "v22.17.0",
+      "executable_sha256": "7bf25453c4280d0c4b8501144e419dd9597eeddd5804c4f4ab571d3286489547"
+    },
+    "npm": {
+      "logical_command": "npm",
+      "version": "10.9.2",
+      "executable_sha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7"
+    }
+  },
+  "build_entrypoint": [
+    "package.json",
+    "package-lock.json",
+    "scripts.build"
+  ],
+  "install_command": [
+    "npm",
+    "ci",
+    "--no-audit",
+    "--no-fund"
+  ],
+  "build_command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "executable_relative_path": "dist/bin/codegraph.js",
+  "version_command": [
+    "version"
+  ],
+  "index_command": [
+    "init",
+    "{repository}"
+  ],
+  "status_command": [
+    "status",
+    "{repository}",
+    "--json"
+  ],
+  "serve_args": [
+    "serve",
+    "--mcp",
+    "--path",
+    "{repository}",
+    "--no-watch"
+  ],
+  "telemetry": {
+    "disabled": true,
+    "environment": {
+      "DO_NOT_TRACK": "1",
+      "CODEGRAPH_TELEMETRY": "0",
+      "CODEGRAPH_NO_UPDATE_CHECK": "1",
+      "CODEGRAPH_NO_DAEMON": "1",
+      "CODEGRAPH_NO_WATCH": "1",
+      "CODEGRAPH_MCP_TOOLS": "explore"
+    },
+    "source_evidence": [
+      {
+        "path": "src/telemetry/index.ts",
+        "sha256": "f2a38bcc00197bdc01cc770c5c0bc1861bab58148495533a6a6d7c675ddc6825",
+        "assertion": "telemetry_disabled_branch"
+      }
+    ],
+    "probe": {
+      "command": [
+        "version"
+      ],
+      "expected_return_code": 0,
+      "expected_stdout_sha256": "acb57a7135b2d7d6e665f67f056e21353023b93835f54def1ae523bf76f1bfb3",
+      "expected_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "network_policy": "deny"
+    }
+  },
+  "self_update": {
+    "disabled": true,
+    "source_evidence": [
+      {
+        "path": "src/upgrade/update-check.ts",
+        "sha256": "0e5af58e2139a122e978d624985854260d57d59dc54cf4e9fb0319ddfe7b5ce5",
+        "assertion": "self_update_disabled_branch"
+      },
+      {
+        "path": "src/bin/codegraph.ts",
+        "sha256": "c87e98247f1a1393db414123da2a3b2b93942326719873055a3b75712e1dbc8f",
+        "assertion": "self_update_disabled_branch"
+      }
+    ],
+    "probe": {
+      "command": [
+        "version"
+      ],
+      "expected_return_code": 0,
+      "expected_stdout_sha256": "acb57a7135b2d7d6e665f67f056e21353023b93835f54def1ae523bf76f1bfb3",
+      "expected_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "network_policy": "deny"
+    }
+  },
+  "runtime_controls": {
+    "catch_up_sync_may_mutate_copy": true,
+    "source_evidence": [
+      {
+        "path": "src/mcp/index.ts",
+        "sha256": "d61a96da07519b5f08fb602dac10d6a8fba516dda8baf3e19ac01e99da2fd9bd",
+        "assertion": "direct_stdio_no_daemon_branch"
+      },
+      {
+        "path": "src/sync/watch-policy.ts",
+        "sha256": "63cd0d725ae00929bbe66dadcfead623e2daaa1d970ae4c617e59ea842e56cb5",
+        "assertion": "watch_disabled_branch"
+      },
+      {
+        "path": "src/mcp/engine.ts",
+        "sha256": "f03a897920f063d01511b1c57d8a115935d537b51085f4cb13820923d3e38411",
+        "assertion": "catch_up_sync_mutates_copy_branch"
+      },
+      {
+        "path": "src/directory.ts",
+        "sha256": "f2ee8e7563c31b44a655658ea932af4d69ba8d74f0cb38222c8cb106ce6b57cd",
+        "assertion": "codegraph_directory_override_branch"
+      }
+    ]
+  }
+}
