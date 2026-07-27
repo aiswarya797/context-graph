@@ -5,4 +5,7 @@ __pycache__/
 *.py[cod]
 .venv/
 .DS_Store
-
+task2.md
+task3.md
+.benchmark-tools/
+.benchmark-work/codegraph/
