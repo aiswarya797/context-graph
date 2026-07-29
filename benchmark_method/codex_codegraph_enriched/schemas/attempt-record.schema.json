@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex CodeGraph attempt",
+  "type": "object",
+  "required": [
+    "run_id",
+    "arm",
+    "task_id",
+    "sample_id",
+    "attempt_id",
+    "attempt_number",
+    "validity",
+    "treatment_valid",
+    "claimable_sample",
+    "adopted_for_slot",
+    "quality_valid",
+    "score_valid",
+    "failure_classes",
+    "navigation",
+    "index_identity",
+    "runtime_provenance",
+    "artifacts",
+    "artifact_sha256"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^codex-codegraph-enriched-(?:smoke-)?[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "arm": {"const": "codex-codegraph-enriched"},
+    "task_id": {"type": "string", "minLength": 1},
+    "sample_id": {"type": "integer", "minimum": 1},
+    "attempt_id": {"type": "string", "pattern": "^attempt-[0-9]{3}$"},
+    "attempt_number": {"type": "integer", "minimum": 1},
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution",
+        "response",
+        "provenance",
+        "index",
+        "mcp",
+        "graph_use",
+        "contamination",
+        "telemetry",
+        "scoring",
+        "cost"
+      ],
+      "properties": {
+        "execution": {"type": "boolean"},
+        "response": {"type": "boolean"},
+        "provenance": {"type": "boolean"},
+        "index": {"type": "boolean"},
+        "mcp": {"type": "boolean"},
+        "graph_use": {"type": "boolean"},
+        "contamination": {"type": "boolean"},
+        "telemetry": {"type": "boolean"},
+        "scoring": {"type": "boolean"},
+        "cost": {"type": "boolean"}
+      }
+    },
+    "treatment_valid": {"type": "boolean"},
+    "claimable_sample": {"type": "boolean"},
+    "adopted_for_slot": {"type": "boolean"},
+    "quality_valid": {"type": "boolean"},
+    "score_valid": {"type": "boolean"},
+    "failure_classes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "navigation": {"type": "object"},
+    "index_identity": {"type": "object"},
+    "runtime_provenance": {"type": "object"},
+    "artifacts": {"type": "object"},
+    "artifact_sha256": {"type": "object"}
+  }
+}

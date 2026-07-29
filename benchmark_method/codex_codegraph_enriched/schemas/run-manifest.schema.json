@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Codex CodeGraph run manifest",
+  "type": "object",
+  "required": [
+    "run_id",
+    "arm",
+    "protocol",
+    "configuration",
+    "corpus",
+    "evaluator",
+    "codegraph",
+    "indexes",
+    "treatment_differences"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "pattern": "^codex-codegraph-enriched-(?:smoke-)?[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "arm": {"const": "codex-codegraph-enriched"},
+    "protocol": {"const": "codegraph-region-v1"},
+    "configuration": {
+      "type": "object",
+      "required": [
+        "requested_model",
+        "requested_reasoning_effort",
+        "codex_version",
+        "sample_count",
+        "retry_cap",
+        "timeout_seconds",
+        "max_regions",
+        "output_schema_sha256",
+        "configuration_sha256",
+        "harness_sha256"
+      ],
+      "properties": {
+        "requested_model": {"type": "string", "minLength": 1},
+        "requested_reasoning_effort": {"type": "string", "minLength": 1},
+        "codex_version": {"type": "string", "minLength": 1},
+        "sample_count": {"type": "integer", "minimum": 1},
+        "retry_cap": {"type": "integer", "minimum": 0},
+        "timeout_seconds": {"type": "integer", "minimum": 1},
+        "max_regions": {"type": "integer", "minimum": 1},
+        "output_schema_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "configuration_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "harness_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "required": ["unique_task_count", "tasks", "artifact", "task_identity_sha256", "source_manifest_sha256"],
+      "properties": {
+        "unique_task_count": {"type": "integer", "minimum": 1},
+        "tasks": {"type": "array", "items": {"type": "object"}},
+        "artifact": {"type": "object"},
+        "task_identity_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["commit", "sha256"],
+      "properties": {
+        "commit": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "codegraph": {
+      "type": "object",
+      "required": [
+        "source_lock",
+        "source_lock_sha256",
+        "runtime_record",
+        "runtime_record_sha256",
+        "task2_evidence_root",
+        "task2_evidence_root_sha256",
+        "enrichment_authority",
+        "mcp_network_isolation"
+      ],
+      "properties": {
+        "source_lock": {"type": "string", "minLength": 1},
+        "source_lock_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "runtime_record": {"type": "string", "minLength": 1},
+        "runtime_record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "task2_evidence_root": {"type": "string", "minLength": 1},
+        "task2_evidence_root_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "enrichment_authority": {
+          "type": "object",
+          "required": [
+            "task4_sealed_root",
+            "task4_sealed_root_sha256",
+            "task4_candidate_root",
+            "task4_candidate_root_sha256",
+            "task4_all24",
+            "task4_all24_sha256",
+            "authority_sha256",
+            "index_count"
+          ],
+          "properties": {
+            "task4_sealed_root": {"type": "string", "minLength": 1},
+            "task4_sealed_root_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "task4_candidate_root": {"type": "string", "minLength": 1},
+            "task4_candidate_root_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "task4_all24": {"type": "string", "minLength": 1},
+            "task4_all24_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "authority_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "index_count": {"type": "integer", "minimum": 1}
+          }
+        },
+        "mcp_network_isolation": {"type": "object"}
+      }
+    },
+    "indexes": {
+      "type": "object",
+      "required": ["records"],
+      "properties": {
+        "records": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "treatment_differences": {
+      "const": [
+        "CodeGraph-use prompt addition",
+        "pinned immutable CodeGraph index",
+        "per-attempt CodeGraph MCP server"
+      ]
+    }
+  }
+}
