@@ -1,0 +1,41 @@
+[treatment]
+arm = "codex-codegraph-enriched"
+protocol = "codegraph-region-v1"
+model = "gpt-5.6-luna"
+display_name = "Codex GPT-5.6 Luna (high) + enriched CodeGraph"
+reasoning_effort = "high"
+codex_version = "0.145.0"
+sample_count = 3
+retry_cap = 2
+timeout_seconds = 900
+max_regions = 5
+required_tool = "codegraph_explore"
+mcp_server_name = "codegraph"
+
+[paths]
+codex_executable = "/Users/aiswarya/.nvm/versions/node/v22.17.0/bin/codex"
+codex_auth_source = "/Users/aiswarya/.codex/auth.json"
+source_lock = ".benchmark-tools/codegraph/source-lock.json"
+upstream_resolution = ".benchmark-tools/codegraph/upstream-resolution.json"
+source_checkout = ".benchmark-tools/codegraph/source"
+runtime_record = ".benchmark-tools/codegraph/runtime/runtime.json"
+indexes = ".benchmark-work/codegraph/indexes"
+sources = ".benchmark-work/codegraph/sources"
+setup_logs = ".benchmark-work/codegraph/setup-logs-v18"
+doctor = ".benchmark-work/codegraph/v18/doctor"
+enriched_builder_checkout = ".benchmark-tools/codegraph-enriched/source"
+enriched_indexes = ".benchmark-work/codegraph-enriched/task4-cycle-3/indexes"
+task4_all24 = ".benchmark-work/codegraph-enriched/task4-cycle-3/all24-preparation-result.json"
+task4_sealed_root = ".benchmark-work/codegraph-enriched/task4-cycle-3-review-v1/sealed-task-evidence-root.json"
+enriched_doctor = ".benchmark-work/codegraph-enriched/doctor"
+
+[index]
+configuration_version = "codegraph-index-v1"
+exclude_names = [".git", ".benchmark-runs", ".benchmark-work", ".benchmark-tools", ".codegraph-task2-probe"]
+directory_prefix = ".codegraph-benchmark-"
+
+[runtime]
+network_during_attempt = false
+shared_daemon = false
+self_update = false
+telemetry = false

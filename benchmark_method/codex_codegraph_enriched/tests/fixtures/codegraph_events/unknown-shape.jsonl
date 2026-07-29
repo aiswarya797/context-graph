@@ -1,0 +1,4 @@
+{"type":"turn.started"}
+{"type":"item.completed","item":{"type":"mcp_server_status","server":"codegraph","status":"connected","tools":["codegraph_explore"]}}
+{"type":"item.completed","item":{"type":"mcp_call","name":"codegraph_explore","output":"src/module.py"}}
+{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":10,"reasoning_output_tokens":2}}
